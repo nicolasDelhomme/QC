@@ -32,6 +32,16 @@
 						<p>Bastian Schiffthaler, Nicolas Delhomme</p>
 					</section>
 					<section>
+						<h4>The golden rules</h4>
+						<ol>
+							<li class="fragment">Always looks at your data</li>
+							<li class="fragment">Always do something justifiable</li>
+							<li class="fragment">Always write everything down</li>
+							<li class="fragment">If you modify your data: <code>goto 1</code></li>
+							<li class="fragment">Know when you're out of your depth and ask for help</li>
+						</ol>
+					</section>
+					<section>
 						<h4>What is our data?</h4>
 						<ul>
 							<li class="fragment">FASTQ (Today)</li>
@@ -199,6 +209,9 @@ fastqc \
   ${HOME}/raw_data/illumina_pe/P11562_110_S9_L001_subset_2.fq.gz</code></pre>
 				</section>
 				<section>
+							<iframe data-src="https://tmate.io/t/bschiffthaler/public" class="stretch"></iframe>
+			  </section>
+				<section>
 					<h4>MultiQC</h4>
 					<p>We want to do this after every step in this practical</p>
 					<p><pre><code class="bash">multiqc -h</code></pre></p>
@@ -214,6 +227,9 @@ multiqc \
   -o ${HOME}/multiqc \
   ${HOME}</code></pre>
 				</section>
+				<section>
+							<iframe data-src="https://tmate.io/t/bschiffthaler/public" class="stretch"></iframe>
+						</section>
 				<section>
 					<section>
 					<h4>SortmeRNA</h4>
@@ -240,6 +256,9 @@ sortmerna \
 						<li>Outcome: A processed library filtered for reads that do not match rRNA sequences (or PhiX)</li>
 					</ul>
 				</section>
+				<section>
+							<iframe data-src="https://tmate.io/t/bschiffthaler/public" class="stretch"></iframe>
+						</section>
 				</section>
 				<section>
 					<section>
@@ -295,6 +314,9 @@ trimmomatic PE \
   SLIDINGWINDOW:5:5 \
   MINLEN:50</code></pre>
 					</section>
+					<section>
+							<iframe data-src="https://tmate.io/t/bschiffthaler/public" class="stretch"></iframe>
+						</section>
 				</section>
 				<section>
 					<h4>Bonus: <a href="https://github.com/DerrickWood/kraken2/blob/master/docs/MANUAL.markdown">KRAKEN2</a></h4>
