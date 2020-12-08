@@ -162,14 +162,14 @@ L - Illumina 1.8+ Phred+33,  raw reads typically (0, 41)</code></pre>
 					</section>
 					<section>
 					<section><h4>FastQC</h4></section>
-					<section><div class="stretch" id="hc1"></div></section>
-					<section><div class="stretch" id="hc2"></div></section>
-					<section><div class="stretch" id="hc3"></div></section>
-					<section><div class="stretch" id="hc4"></div></section>
-					<section><div class="stretch" id="hc5"></div></section>
-					<section><div class="stretch" id="hc6"></div></section>
-					<section><div class="stretch" id="hc7"></div></section>
-					<section><div class="stretch" id="hc8"></div></section>
+					<section id="p-hc1"><div class="stretch" id="hc1"></div></section>
+					<section id="p-hc2"><div class="stretch" id="hc2"></div></section>
+					<section id="p-hc3"><div class="stretch" id="hc3"></div></section>
+					<section id="p-hc4"><div class="stretch" id="hc4"></div></section>
+					<section id="p-hc5"><div class="stretch" id="hc5"></div></section>
+					<section id="p-hc6"><div class="stretch" id="hc6"></div></section>
+					<section id="p-hc7"><div class="stretch" id="hc7"></div></section>
+					<section id="p-hc8"><div class="stretch" id="hc8"></div></section>
 				</section>
 				<section>
 					<h4>Let's get our hands dirty</h4>
@@ -346,8 +346,9 @@ trimmomatic PE \
 		<script type="text/javascript">
 			$(document).ready(function(){
 					Reveal.addEventListener( 'slidechanged', function( event ) {
-						console.log(event);
-						if (event.indexh === 4 && event.indexv === 1){
+						let curSlide = Reveal.getCurrentSlide();
+						let curID = $(curSlide).attr('id');
+						if (curID === "p-hc1"){
 						window.chart_hc1 = Highcharts.chart('hc1', {
 										chart: {
 											type: 'boxplot'
@@ -370,7 +371,7 @@ trimmomatic PE \
 										         { name: "Mean", type: 'line', data: fq_data['Per Base Sequence Quality'].map(x => x[1][0])}]
 									});
 						window.dispatchEvent(new Event('resize'));
-						} else if (event.indexh === 4 && event.indexv === 2){
+						} else if (curID === "p-hc2"){
 						window.chart_hc2 = Highcharts.chart('hc2', {
 										chart: {
 											type: 'line'
@@ -389,7 +390,7 @@ trimmomatic PE \
 										series: [{ name: "", data: fq_data['Per Sequence Quality']}]
 									});
 						window.dispatchEvent(new Event('resize'));
-					} else if (event.indexh === 4 && event.indexv === 3){
+					} else if (curID === "p-hc3"){
 						window.chart_hc3 = Highcharts.chart('hc3', {
 										chart: {
 											type: 'line'
@@ -414,7 +415,7 @@ trimmomatic PE \
 										{ name: "C", data: fq_data['Per Base Sequence Content'].map(x => x[1][3])}]
 									});
 						window.dispatchEvent(new Event('resize'));
-					} else if (event.indexh === 4 && event.indexv === 4){
+					} else if (curID === "p-hc4"){
 						window.chart_hc4 = Highcharts.chart('hc4', {
 										chart: {
 											type: 'line'
@@ -433,7 +434,7 @@ trimmomatic PE \
 										series: [{ name: "", data: fq_data['Per Sequence GC Content']}]
 									});
 						window.dispatchEvent(new Event('resize'));
-					} else if (event.indexh === 4 && event.indexv === 5){
+					} else if (curID === "p-hc5"){
 						window.chart_hc5 = Highcharts.chart('hc5', {
 										chart: {
 											type: 'line'
@@ -452,7 +453,7 @@ trimmomatic PE \
 										series: [{ name: "", data: fq_data['Per Base N Content']}]
 									});
 						window.dispatchEvent(new Event('resize'));
-					} else if (event.indexh === 4 && event.indexv === 6){
+					} else if (curID === "p-hc6"){
 						window.chart_hc6 = Highcharts.chart('hc6', {
 										chart: {
 											type: 'column'
@@ -471,7 +472,7 @@ trimmomatic PE \
 										series: [{ name: "", data: fq_data['Sequence Length Distribution']}]
 									});
 						window.dispatchEvent(new Event('resize'));
-					} else if (event.indexh === 4 && event.indexv === 7){
+					} else if (curID === "p-hc7"){
 						window.chart_hc7 = Highcharts.chart('hc7', {
 										chart: {
 											type: 'line'
@@ -493,7 +494,7 @@ trimmomatic PE \
 										series: [{ name: "", data: fq_data['Sequence Duplication Levels']}]
 									});
 						window.dispatchEvent(new Event('resize'));
-					} else if (event.indexh === 4 && event.indexv === 8){
+					} else if (curID === "p-hc8"){
 						window.chart_hc8 = Highcharts.chart('hc8', {
 										chart: {
 											type: 'line'
