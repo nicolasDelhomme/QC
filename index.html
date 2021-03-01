@@ -350,7 +350,7 @@ trimmomatic PE \
 					<button onclick="(function() {$('#kraken-solution').toggle(); window.dispatchEvent(new Event('resize'));}) ();" class="large btn button enabled">Show example</button>
 					<pre style="display: none;" class="small" id="kraken-solution"><code>#!/usr/bin/env bash
  kraken2 \
-   --db /db/kraken2/rRNA \
+   --db /db/kraken2/nt \
    --gzip-compressed \
    --classified-out '110_#_.fq.gz' \
    --unclassified-out '110_#_.fq.gz' \
