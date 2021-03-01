@@ -31,8 +31,8 @@
 						<h2>Data QC</h2>
 						<p>Bastian Schiffthaler, Nicolas Delhomme</p>
 					</section>
-					<section>
-						<h4>The golden rules</h4>
+					<section data-background="https://static1.srcdn.com/wordpress/wp-content/uploads/2020/08/Zombieland-10-Times-Columbus-Broke-The-Rules-Feature-Image.jpg" style="background-color: rgb(0,0,0,0.5);">
+						<h4>The golden rules to survive in the world of bioinformatics</h4>
 						<ol>
 							<li class="fragment">Always look at your data</li>
 							<li class="fragment">Always do something justifiable</li>
@@ -119,25 +119,25 @@ bzless &lt;path_to_fq.bz2&gt;
 						</section>
 						<section>
 							<h4>"That" table</h4>
-							<pre class="stretch small"><code class="plaintext">SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS.....................................................
-..........................XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX......................
-...............................IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII......................
-.................................JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ.....................
-LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL....................................................
+							<pre class="stretch small"><span style="color: #44AF69;">SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS.....................................................</span>
+<span style="color: #F8333C;">..........................XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX......................</span>
+<span style="color: #FCAB10;">...............................IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII......................</span>
+<span style="color: #2B9EB3;">.................................JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ.....................</span>
+<span style="color: #7D387D;">LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL....................................................</span>
 !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 |                         |    |        |                              |                     |
 33                        59   64       73                            104                   126
-0........................26...31.......40                                
-                         -5....0........9.............................40 
-                               0........9.............................40 
-                                  3.....9..............................41 
-0.2......................26...31........41                              
-S - Sanger        Phred+33,  raw reads typically (0, 40)
-X - Solexa        Solexa+64, raw reads typically (-5, 40)
-I - Illumina 1.3+ Phred+64,  raw reads typically (0, 40)
-J - Illumina 1.5+ Phred+64,  raw reads typically (3, 41)
-   with 0=unused, 1=unused, 2=Read Segment Quality Control Indicator (bold) 
-L - Illumina 1.8+ Phred+33,  raw reads typically (0, 41)</code></pre>
+<span style="color: #44AF69;">0........................26...31.......40                                </span>
+<span style="color: #F8333C;">                         -5....0........9.............................40 </span>
+<span style="color: #FCAB10;">                               0........9.............................40 </span>
+<span style="color: #2B9EB3;">                                  3.....9..............................41 </span>
+<span style="color: #7D387D;">0.2......................26...31........41     </span>                         
+<span style="color: #44AF69;">S - Sanger        Phred+33,  raw reads typically (0, 40)</span>
+<span style="color: #F8333C;">X - Solexa        Solexa+64, raw reads typically (-5, 40)</span>
+<span style="color: #FCAB10;">I - Illumina 1.3+ Phred+64,  raw reads typically (0, 40)</span>
+<span style="color: #2B9EB3;">J - Illumina 1.5+ Phred+64,  raw reads typically (3, 41)
+   with 0=unused, 1=unused, 2=Read Segment Quality Control Indicator (bold) </span>
+<span style="color: #7D387D;">L - Illumina 1.8+ Phred+33,  raw reads typically (0, 41)</span></pre>
 							<p class="citation"><a href="https://en.wikipedia.org/wiki/FASTQ_format#Encoding">Source: Wikipedia</a></p>
 						</section>
 						<section>
@@ -180,6 +180,7 @@ L - Illumina 1.8+ Phred+33,  raw reads typically (0, 41)</code></pre>
 						<p>Copy files<pre><code class="bash">cp &lt;source&gt; &lt;target&gt;</code></pre></p>
 				</section>
 				<section>
+				<section>
 					<p>...and a word about good practice in Bash</p>
 					<pre><code class="bash">#!/usr/bin/env bash
 
@@ -192,10 +193,20 @@ set -o pipefail
 # Fail on unset variable
 set -o nounset
 # Print trace info
-set -o xtract
+set -o xtrace
 
 echo "Hello, world!"</code></pre>
 				</section>
+				<section>
+					<p>...and shorter</p>
+					<pre><code class="bash">#!/usr/bin/env bash
+
+set -euxo pipefail
+set -o errtrace
+
+echo "Hello, world!"</code></pre>
+				</section>
+			</section>
 				<section>
 					<a href="https://gist.github.com/bschiffthaler/c6c12ef1bef33cb4932cea8274007579">Markdown follow-along</a>
 				</section>
@@ -244,7 +255,7 @@ multiqc \
 					<p>Software made to select <em style="text-decoration: underline;">for</em> rRNA/OTUs. We use it to remove those from our dataset.</p>
 					<p><pre><code class="bash">sortmerna -h</code></pre></p>
 					<p><pre><code class="bash">SORTMERNA_DB=/db/sortmerna/smr_v4.3_default_db.fasta</code></pre></p>
-					<p><pre><code class="bash">echo $SORTMERNA_DB</code></pre></p>
+					<p><pre><code class="bash">IDX=/db/sortmerna/idx</code></pre></p>
 					<button onclick="(function() {$('#sortmerna-solution').toggle(); window.dispatchEvent(new Event('resize'));}) ();" class="large btn button enabled">Show example</button>
 
 					<pre style="display: none;" class="small" id="sortmerna-solution"><code class="bash">#!/usr/bin/env bash
@@ -252,6 +263,7 @@ sortmerna \
   --fastx \
   --other ${HOME}/110_sortmerna \
   --out2 \
+  --idx /db/sortmerna/idx \
   --paired_in \
   --reads ${HOME}/raw_data/illumina_pe/P11562_110_S9_L001_subset_1.fq.gz \
   --reads ${HOME}/raw_data/illumina_pe/P11562_110_S9_L001_subset_2.fq.gz \
@@ -327,12 +339,28 @@ trimmomatic PE \
 						</section>
 				</section>
 				<section>
+				<section>
 					<h4>Bonus: <a href="https://github.com/DerrickWood/kraken2/blob/master/docs/MANUAL.markdown">KRAKEN2</a></h4>
 					<p>Kraken2 uses efficient computational datastrucures to determine sequence similarity.</p>
 					<pre><code class="bash">kraken2 -h</code></pre>
 					<pre><code class="plaintext">/db/kraken2/default</code></pre>
 					<p>See also this manual: <a href="https://genomics.sschmeier.com/ngs-taxonomic-investigation/index.html"> https://genomics.sschmeier.com/ngs-taxonomic-investigation/index.html </a></p>
 				</section>
+				<section>
+					<button onclick="(function() {$('#kraken-solution').toggle(); window.dispatchEvent(new Event('resize'));}) ();" class="large btn button enabled">Show example</button>
+					<pre style="display: none;" class="small" id="kraken-solution"><code>#!/usr/bin/env bash
+ kraken2 \
+   --db /db/kraken2/rRNA \
+   --gzip-compressed \
+   --classified-out '110_#_.fq.gz' \
+   --unclassified-out '110_#_.fq.gz' \
+   --paired \
+   --report kraken2_report.txt \
+   --output kraken2_out.txt \
+   /home/user/raw_data/illumina_pe/P11562_110_S9_L001_subset_1.fq.gz \
+   /home/user/raw_data/illumina_pe/P11562_110_S9_L001_subset_2.fq.gz
+				</code></pre>
+				</section></section>
 				<section>
 					<h4>Haven't had enough of QC yet?</h4>
 					<ol>
