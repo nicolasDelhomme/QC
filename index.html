@@ -78,15 +78,15 @@
 								</thead>
 								<tbody class="small" style="font-size: 0.5em;">
 										<tr><td>1</td><td>P11562_108_S8_L001_subset_1.fq.gz</td><td>P11562_108_S8_L001_subset_2.fq.gz</td></tr>
-                    <tr><td>2</td><td>P11562_110_S9_L001_subset_1.fq.gz</td><td>P11562_110_S9_L001_subset_2.fq.gz</td></tr>
-                    <tr><td>3</td><td>P11562_111_S10_L001_subset_1.fq.gz</td><td>P11562_111_S10_L001_subset_2.fq.gz</td></tr>
-                    <tr><td>4</td><td>P11562_112_S11_L001_subset_1.fq.gz</td><td>P11562_112_S11_L001_subset_2.fq.gz</td></tr>
-                    <tr><td>5</td><td>P11562_113_S12_L001_subset_1.fq.gz</td><td>P11562_113_S12_L001_subset_2.fq.gz</td></tr>
-                    <tr><td>6</td><td>P11562_114_S13_L001_subset_1.fq.gz</td><td>P11562_114_S13_L001_subset_2.fq.gz</td></tr>
-                    <tr><td>7</td><td>P11562_115_S14_L001_subset_1.fq.gz</td><td>P11562_115_S14_L001_subset_2.fq.gz</td></tr>
-                    <tr><td>8</td><td>P11562_134_S31_L001_subset_1.fq.gz</td><td>P11562_134_S31_L001_subset_2.fq.gz</td></tr>
-                    <tr><td>9</td><td>P11562_135_S32_L001_subset_1.fq.gz</td><td>P11562_135_S32_L001_subset_2.fq.gz</td></tr>
-                    <tr><td>10</td><td>P11562_136_S33_L001_subset_1.fq.gz</td><td>P11562_136_S33_L001_subset_2.fq.gz</td></tr>
+										<tr><td>2</td><td>P11562_110_S9_L001_subset_1.fq.gz</td><td>P11562_110_S9_L001_subset_2.fq.gz</td></tr>
+										<tr><td>3</td><td>P11562_111_S10_L001_subset_1.fq.gz</td><td>P11562_111_S10_L001_subset_2.fq.gz</td></tr>
+										<tr><td>4</td><td>P11562_112_S11_L001_subset_1.fq.gz</td><td>P11562_112_S11_L001_subset_2.fq.gz</td></tr>
+										<tr><td>5</td><td>P11562_113_S12_L001_subset_1.fq.gz</td><td>P11562_113_S12_L001_subset_2.fq.gz</td></tr>
+										<tr><td>6</td><td>P11562_114_S13_L001_subset_1.fq.gz</td><td>P11562_114_S13_L001_subset_2.fq.gz</td></tr>
+										<tr><td>7</td><td>P11562_115_S14_L001_subset_1.fq.gz</td><td>P11562_115_S14_L001_subset_2.fq.gz</td></tr>
+										<tr><td>8</td><td>P11562_134_S31_L001_subset_1.fq.gz</td><td>P11562_134_S31_L001_subset_2.fq.gz</td></tr>
+										<tr><td>9</td><td>P11562_135_S32_L001_subset_1.fq.gz</td><td>P11562_135_S32_L001_subset_2.fq.gz</td></tr>
+										<tr><td>10</td><td>P11562_136_S33_L001_subset_1.fq.gz</td><td>P11562_136_S33_L001_subset_2.fq.gz</td></tr>
 										<tr><td>11</td><td>P11562_137_S34_L001_subset_1.fq.gz</td><td>P11562_137_S34_L001_subset_2.fq.gz</td></tr>
 										<tr><td>12</td><td>P11562_138_S35_L001_subset_1.fq.gz</td><td>P11562_138_S35_L001_subset_2.fq.gz</td></tr>
 										<tr><td>13</td><td>P11562_139_S36_L001_subset_1.fq.gz</td><td>P11562_139_S36_L001_subset_2.fq.gz</td></tr>
@@ -206,6 +206,15 @@ set -o errtrace
 
 echo "Hello, world!"</code></pre>
 				</section>
+			<section>
+				<h4>Advanced users</h4>
+				<p>In order to keep you challenged, try to do the following in the exercises</p>
+				<ul>
+					<li class="fragment">Set up a separate script that executes each QC step</li>
+					<li class="fragment">Set up a script that loops through the input data and runs the QC steps for all data</li>
+					<li class="fragment">If you know Snakemake, use it! <pre><code class="bash">conda create -n sm -c conda-forge -c bioconda snakemake</code></pre></li>
+				</ul>
+			</section>
 			</section>
 				<section>
 					<a href="https://gist.github.com/bschiffthaler/c6c12ef1bef33cb4932cea8274007579">Markdown follow-along</a>
@@ -282,7 +291,7 @@ sortmerna \
 				<section>
 					<ul>
 						<li>Purpose: Detecting and removing rRNA contamination from libraries</li>
-						<li>Outcome: A processed library filtered for reads that do not match rRNA sequences (or PhiX)</li>
+						<li>Outcome: A processed library filtered for reads that do not match rRNA sequences (or other contaminants)</li>
 					</ul>
 				</section>
 				<section>
@@ -342,7 +351,7 @@ trimmomatic PE \
   ${HOME}/110_sortmerna_trimmomatic_1u.fq \
   ${HOME}/110_sortmerna_trimmomatic_2.fq \
   ${HOME}/110_sortmerna_trimmomatic_2u.fq \
-  ILLUMINACLIP:$TRIMMOMATIC_HOME/adapters/TruSeq3-PE.fa:5:30:10 \
+  ILLUMINACLIP:$TRIMMOMATIC_HOME/adapters/TruSeq3-PE.fa:2:30:10 \
   SLIDINGWINDOW:5:5 \
   MINLEN:50</code></pre>
 					</section>
