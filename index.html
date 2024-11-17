@@ -29,7 +29,7 @@
 				<div class="slides">
 					<section>
 						<h2>Data QC</h2>
-						<p>Bastian Schiffthaler, Nicolas Delhomme</p>
+						<p>Kristina Benevides, Nicolas Delhomme, original material from Bastian Schiffthaler</p>
 					</section>
 					<section data-background="https://static1.srcdn.com/wordpress/wp-content/uploads/2020/08/Zombieland-10-Times-Columbus-Broke-The-Rules-Feature-Image.jpg" style="background-color: rgb(0,0,0,0.5);">
 						<h4>The golden rules to survive in the world of bioinformatics</h4>
@@ -49,9 +49,8 @@
 					<section>
 						<h4>What is our data?</h4>
 						<ul>
-							<li class="fragment">FASTQ (Today)</li>
-							<li class="fragment">Compressed FASTQ (Today)</li>
-							<li class="fragment"><strong style="text-decoration: underline;">BAM</strong>, BAX.h5, BAS.h5</li>
+							<li class="fragment">FASTQ</li>
+							<li class="fragment">Compressed FASTQ</li>
 						</ul>
 					</section>
 					<section>
@@ -174,7 +173,7 @@ bzless &lt;path_to_fq.bz2&gt;
 					<section id="p-hc8"><div class="stretch" id="hc8"></div></section>
 				</section>
 				<section>
-					<h4>Let's get our hands dirty</h4>
+					<h4>Command Line</h4>
 					<p>A reminder</p>
 						<p>Change directory<pre><code class="bash">cd &lt;path&gt;</code></pre></p>
 						<p>Make a directory<pre><code class="bash">mkdir &lt;path&gt;</code></pre></p>
@@ -208,19 +207,7 @@ set -o errtrace
 
 echo "Hello, world!"</code></pre>
 				</section>
-			<section>
-				<h4>Advanced users</h4>
-				<p>In order to keep you challenged, try to do the following in the exercises</p>
-				<ul>
-					<li class="fragment">Set up a separate script that executes each QC step</li>
-					<li class="fragment">Set up a script that loops through the input data and runs the QC steps for all data</li>
-					<li class="fragment">If you know Snakemake, use it! <pre><code class="bash">conda create -n sm -c conda-forge -c bioconda snakemake</code></pre></li>
-				</ul>
 			</section>
-			</section>
-				<section>
-					<a href="https://gist.github.com/bschiffthaler/c6c12ef1bef33cb4932cea8274007579">Markdown follow-along</a>
-				</section>
 				<section>
 					<img width="300" data-src="https://mermaid.ink/svg/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW0Zhc3RRQ10gLS0-IEJbU29ydE1lUk5BXVxuICAgIEIgLS0-IENbRmFzdFFDXVxuICAgIEMgLS0-IERbVHJpbW1vbWF0aWNdXG4gICAgRCAtLT4gRVtGYXN0UUNdXG4gICAgQSAtLT4gRlxuICAgIEIgLS0-IEZcbiAgICBDIC0tPiBGXG4gICAgRCAtLT4gRlxuICAgIEUgLS0-IEZbTXVsdGlRQ11cbiAgICBzdHlsZSBBIGZpbGw6ICM3RDM4N0QiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGFyayJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ">
 				</section>
@@ -361,29 +348,6 @@ trimmomatic PE \
 							<iframe data-src="https://tmate.io/t/bschiffthaler/public" class="stretch"></iframe>
 					</section>-->
 				</section>
-				<section>
-				<section>
-					<h4>Bonus: <a href="https://github.com/DerrickWood/kraken2/blob/master/docs/MANUAL.markdown">KRAKEN2</a></h4>
-					<p>Kraken2 uses efficient computational datastrucures to determine sequence similarity.</p>
-					<pre><code class="bash">kraken2 -h</code></pre>
-					<pre><code class="plaintext">/db/kraken2/default</code></pre>
-					<p>See also this manual: <a href="https://genomics.sschmeier.com/ngs-taxonomic-investigation/index.html"> https://genomics.sschmeier.com/ngs-taxonomic-investigation/index.html </a></p>
-				</section>
-				<section>
-					<button onclick="(function() {$('#kraken-solution').toggle(); window.dispatchEvent(new Event('resize'));}) ();" class="large btn button enabled">Show example</button>
-					<pre style="display: none;" class="small" id="kraken-solution"><code>#!/usr/bin/env bash
- kraken2 \
-   --db /db/kraken2/default \
-   --gzip-compressed \
-   --classified-out '110_#_.fq.gz' \
-   --unclassified-out '110_#_.fq.gz' \
-   --paired \
-   --report kraken2_report.txt \
-   --output kraken2_out.txt \
-   /home/user/raw_data/illumina_pe/P11562_110_S9_L001_subset_1.fq.gz \
-   /home/user/raw_data/illumina_pe/P11562_110_S9_L001_subset_2.fq.gz
-				</code></pre>
-				</section></section>
 				<section>
 					<h4>Haven't had enough of QC yet?</h4>
 					<ol>
